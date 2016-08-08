@@ -671,5 +671,8 @@ bool ValidateSlot2Access(u32 procnum, u32 demandSRAMSpeed, u32 demand1stROMSpeed
 
 extern ADVANsCEne	advsc;
 
+extern u64 sequencerNext;
+#define SEQUENCER_NEXT(X) if(X <= sequencerNext) sequencerNext = X
+
 #endif
 

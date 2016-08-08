@@ -95,7 +95,9 @@ tryagain:
 				}
 				if(ok)
 				{
-					ArchiveFileChooserInfo::FileInfo fi = { name, i };
+					ArchiveFileChooserInfo::FileInfo* fi = new ArchiveFileChooserInfo::FileInfo();
+					fi->name = name;
+					fi->itemIndex = i;
 					files.push_back(fi);
 				}
 			}
@@ -112,22 +114,22 @@ tryagain:
 		bool stripping = !files.empty();
 		while(stripping)
 		{
-			const char* firstName = files[0].name.c_str();
+			const char* firstName = files[0]->name.c_str();
 			const char* slash = strchr(firstName, '\\');
 			const char* slash2 = strchr(firstName, '/');
 			slash = std::max(slash, slash2);
 			if(!slash++)
 				break;
 			for(size_t i = 1; i < files.size(); i++)
-				if(strncmp(firstName, files[i].name.c_str(), slash - firstName))
+				if(strncmp(firstName, files[i]->name.c_str(), slash - firstName))
 					stripping = false;
 			if(stripping)
 				for(size_t i = 0; i < files.size(); i++)
-					files[i].name = files[i].name.substr(slash - firstName, files[i].name.length() - (slash - firstName));
+					files[i]->name = files[i]->name.substr(slash - firstName, files[i]->name.length() - (slash - firstName));
 		}
 
 		// sort by filename
-		std::sort(files.begin(), files.end(), FileInfo::Sort);
+		//std::sort(files.begin(), files.end(), FileInfo::Sort);
 	}
 
 //protected:
@@ -145,7 +147,7 @@ tryagain:
 	};
 
 	ArchiveFile& archive;
-	std::vector<FileInfo> files;
+	std::vector<FileInfo*> files;
 };
 
 int ChooseItemFromArchive(ArchiveFile& archive, bool autoChooseIfOnly1, const char** ignoreExtensions, int numIgnoreExtensions)
@@ -170,7 +172,7 @@ int ChooseItemFromArchive(ArchiveFile& archive, bool autoChooseIfOnly1, const ch
 
 	// if there's only 1 item, choose it
 	if(info.files.size() == 1 && autoChooseIfOnly1 && numIgnoreExtensions == prevNumIgnoreExtensions)
-		return info.files[0].itemIndex;
+		return info.files[0]->itemIndex;
 
 #ifndef ANDROID
 	// bring up a dialog to choose the index if there's more than 1

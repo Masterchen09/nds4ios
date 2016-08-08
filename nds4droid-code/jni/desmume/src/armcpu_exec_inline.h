@@ -111,10 +111,7 @@ u32 armcpu_exec()
 		return cpuExecute<PROCNUM>();
 	else if(cpuMode == 0 || arm_cpubase == NULL)
 		return armcpu_exec<PROCNUM>();
-    
-	u32 execute = arm_cpubase->Execute[PROCNUM]();
-    
-    return execute;
+	return arm_cpubase->Execute[PROCNUM]();
 }
 
 

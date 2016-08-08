@@ -3276,7 +3276,7 @@ static void ResetCodeBuffer()
 
 	s_CodeBuffer->Reset();
 
-	FlushIcacheSection(base, size);
+	FlushIcacheSection(base, base + size);
 }
 
 static u8* AllocCodeBuffer(size_t size)
@@ -3561,7 +3561,7 @@ static bool TccGenerateNativeCode()
 
 	ret = true;
 
-	FlushIcacheSection(ptr, size);
+	FlushIcacheSection(ptr, ptr + size);
 
 	for (u32 i = 0; i < s_CurCompiledAddress; i++)
 	{

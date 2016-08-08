@@ -80,6 +80,7 @@ int lagframecounter;
 int LagFrameFlag;
 int lastLag;
 int TotalLagFrames;
+u64 sequencerNext = 0;
 
 TSCalInfo TSCal;
 
@@ -839,7 +840,7 @@ int NDS_WritePNG(const char *fname)
 			goto PNGerr;
 		}
 		if(tmp_buffer) free(tmp_buffer);
-		if(!WritePNGChunk(pp,compmemsize,"IDAT",compmem))
+		if(!WritePNGChunk(pp,(u32)compmemsize,"IDAT",compmem))
 			goto PNGerr;
 	}
 	if(!WritePNGChunk(pp,0,"IEND",0))
@@ -1757,11 +1758,12 @@ FORCEINLINE u64 _fast_min(u64 a, u64 b)
 u64 Sequencer::findNext()
 {
 	//this one is always enabled so dont bother to check it
+	/*
 	u64 next = dispcnt.next();
 
 	if(divider.isEnabled()) next = _fast_min(next,divider.next());
 	if(sqrtunit.isEnabled()) next = _fast_min(next,sqrtunit.next());
-	if(gxfifo.enabled) next = _fast_min(next,gxfifo.next());
+	if(gxfifo.getEnabled()) next = _fast_min(next,gxfifo.next());
 
 #ifdef EXPERIMENTAL_WIFI_COMM
 	next = _fast_min(next,wifi.next());
@@ -1770,13 +1772,13 @@ u64 Sequencer::findNext()
 #define test(X,Y) if(dma_##X##_##Y .isEnabled()) next = _fast_min(next,dma_##X##_##Y .next());
 	test(0,0); test(0,1); test(0,2); test(0,3);
 	test(1,0); test(1,1); test(1,2); test(1,3);
-#undef test
-#define test(X,Y) if(timer_##X##_##Y .enabled) next = _fast_min(next,timer_##X##_##Y .next());
+#undef test*/
+#define test(X,Y) if(timer_##X##_##Y .enabled) SEQUENCER_NEXT(timer_##X##_##Y .next()); /*next = _fast_min(next,timer_##X##_##Y .next())*/;
 	test(0,0); test(0,1); test(0,2); test(0,3);
 	test(1,0); test(1,1); test(1,2); test(1,3);
 #undef test
 
-	return next;
+	return sequencerNext;
 }
 
 void Sequencer::execHardware()
@@ -1815,11 +1817,12 @@ void Sequencer::execHardware()
 			execHardware_hblank();
 			//(once this was 1092 or 1092/12=91 dots.)
 			//there are surely 355 dots per scanline, less 267 for non-blanking period. the rest is hblank and then after that is hstart
-			dispcnt.timestamp += (355-267)*6*2;
+			dispcnt.timestamp += ((355-267)*6*2);
 			dispcnt.param = ESI_DISPCNT_HStart;
 			break;
 		}
 	}
+	sequencerNext = dispcnt.timestamp;
 
 #ifdef EXPERIMENTAL_WIFI_COMM
 	if(wifi.isTriggered())
@@ -1829,16 +1832,16 @@ void Sequencer::execHardware()
 	}
 #endif
 	
-	if(divider.isTriggered()) divider.exec();
-	if(sqrtunit.isTriggered()) sqrtunit.exec();
-	if(gxfifo.isTriggered()) gxfifo.exec();
+	if(divider.isTriggered()) { divider.exec(); SEQUENCER_NEXT(divider.next()); }
+	if(sqrtunit.isTriggered()) { sqrtunit.exec(); SEQUENCER_NEXT(sqrtunit.next()); }
+	if(gxfifo.isTriggered()) { gxfifo.exec(); SEQUENCER_NEXT(gxfifo.next()); }
 
 
-#define test(X,Y) if(dma_##X##_##Y .isTriggered()) dma_##X##_##Y .exec();
+#define test(X,Y) if(dma_##X##_##Y .isTriggered()) { dma_##X##_##Y .exec(); SEQUENCER_NEXT(dma_##X##_##Y .next()); }
 	test(0,0); test(0,1); test(0,2); test(0,3);
 	test(1,0); test(1,1); test(1,2); test(1,3);
 #undef test
-#define test(X,Y) if(timer_##X##_##Y .enabled) if(timer_##X##_##Y .isTriggered()) timer_##X##_##Y .exec();
+#define test(X,Y) if(timer_##X##_##Y .isTriggered()) timer_##X##_##Y .exec();
 	test(0,0); test(0,1); test(0,2); test(0,3);
 	test(1,0); test(1,1); test(1,2); test(1,3);
 #undef test
@@ -1997,9 +2000,8 @@ static /*donotinline*/ std::pair<s32,s32> armInnerLoop(
 	{
 		if(doarm9 && (!doarm7 || arm9 <= timer))
 		{
-			if(!NDS_ARM9.waitIRQ && !nds.freezeBus) {
+			if(!NDS_ARM9.waitIRQ && !nds.freezeBus)
 				arm9 += armcpu_exec<ARMCPU_ARM9,cpuMode>();
-            }
 			else
 			{
 				s32 temp = arm9;
@@ -2472,7 +2474,7 @@ void NDS_Reset()
 	singleStep = false;
 	nds_debug_continuing[0] = nds_debug_continuing[1] = false;
 	bool fw_success = false;
-	FILE* inf = NULL;
+	// FILE* inf = NULL;
 	NDS_header * header = NDS_getROMHeader();
 
 	DEBUG_reset();
@@ -2696,12 +2698,12 @@ void NDS_Reset()
 	//
 	_MMU_write32<ARMCPU_ARM9>(0x02FFFE70, 0x5f617267);
 	_MMU_write32<ARMCPU_ARM9>(0x02FFFE74, kCommandline); //(commandline starts here)
-	_MMU_write32<ARMCPU_ARM9>(0x02FFFE78, rompath.size()+1);
+	_MMU_write32<ARMCPU_ARM9>(0x02FFFE78, (int)rompath.size()+1);
 	//0x027FFF7C (argc)
 	//0x027FFF80 (argv)
 	for(size_t i=0;i<rompath.size();i++)
-		_MMU_write08<ARMCPU_ARM9>(kCommandline+i, rompath[i]);
-	_MMU_write08<ARMCPU_ARM9>(kCommandline+rompath.size(), 0);
+		_MMU_write08<ARMCPU_ARM9>(kCommandline+(int)i, rompath[i]);
+	_MMU_write08<ARMCPU_ARM9>(kCommandline+(int)rompath.size(), 0);
 	//--------------------------------
 
 	if ((firmware->patched) && (CommonSettings.UseExtBIOS == true) && (CommonSettings.BootFromFirmware == true) && (fw_success == TRUE))
@@ -2925,6 +2927,7 @@ void NDS_releaseTouch(void)
 	rawUserInput.touch.touchY = 0;
 	rawUserInput.touch.isTouch = false;
 }
+
 void NDS_setMic(bool pressed)
 {
 	gotInputRequest();

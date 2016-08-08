@@ -87,7 +87,7 @@ void JNI(setMicPaused, int set)
 	{
 		if(set == 1)
 		{
-			(*recorderRecord)->SetRecordState(recorderRecord,SL_RECORDSTATE_PAUSED);
+			(*recorderRecord)->SetRecordState(recorderRecord,SL_RECORDSTATE_STOPPED);
 		}
 		else 
 		{

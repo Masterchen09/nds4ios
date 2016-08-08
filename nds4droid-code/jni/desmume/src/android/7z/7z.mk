@@ -133,7 +133,7 @@ LOCAL_SRC_FILES			:= 	C/Threads.c \
 							CPP/7zip/Crypto/Rar20Crypto.cpp \
 							CPP/7zip/Crypto/WzAes.cpp
 
-LOCAL_ARM_MODE 			:= 	thumb
+LOCAL_ARM_MODE 			:= 	arm
 LOCAL_ARM_NEON 			:= 	false
 LOCAL_CFLAGS			:= -DCOMPRESS_MT
 

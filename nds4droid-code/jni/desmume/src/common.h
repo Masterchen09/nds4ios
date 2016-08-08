@@ -20,10 +20,11 @@
 #ifndef _COMMON_H_
 #define _COMMON_H_
 
+#include <string>
 #include <stdio.h>
 #include <string.h>
 #include "types.h"
-#include <string>
+
 
 #if defined(WIN32)
 

@@ -586,12 +586,18 @@ void savestate_slot(int num)
    if (savestate_save(filename))
    {
 	   osd->setLineColor(255, 255, 255);
-	   osd->addLine("Saved to %i slot", num);
+	   if(num == 10) //autosave
+			osd->addLine("Saved autosave");
+	   else
+			osd->addLine("Saved to %i slot", num);
    }
    else
    {
 	   osd->setLineColor(255, 0, 0);
-	   osd->addLine("Error saving %i slot", num);
+	   if(num == 10) //autosave
+			osd->addLine("Error saving autosave");
+	   else	
+			osd->addLine("Error saving %i slot", num);
 	   return;
    }
 
@@ -619,12 +625,18 @@ void loadstate_slot(int num)
    if (savestate_load(filename))
    {
 	   osd->setLineColor(255, 255, 255);
-	   osd->addLine("Loaded from %i slot", num);
+	   if(num == 10) //autosave
+			osd->addLine("Loaded autosave");
+	   else
+			osd->addLine("Loaded from %i slot", num);
    }
    else
    {
 	   osd->setLineColor(255, 0, 0);
-	   osd->addLine("Error loading %i slot", num);
+	   if(num == 10) //autosave
+			osd->addLine("Error loading autosave");
+	   else
+			osd->addLine("Error loading %i slot", num);
    }
 }
 

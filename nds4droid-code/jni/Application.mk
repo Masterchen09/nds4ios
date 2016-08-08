@@ -14,11 +14,11 @@ APP_CFLAGS := -Ofast -ftree-vectorize -fsingle-precision-constant -fprefetch-loo
 #APP_LDFLAGS := -fprofile-generate=/sdcard/profile
 
 # To use profile guide optimizaions
-APP_CFLAGS += -Wno-coverage-mismatch -fprofile-correction -fprofile-use=d:/ds/profile
-APP_LDFLAGS := -fprofile-use=d:/ds/profile
+#APP_CFLAGS += -Wno-coverage-mismatch -fprofile-correction -fprofile-use=d:/ds/profile
+#APP_LDFLAGS := -fprofile-use=d:/ds/profile
 
 # For debugging
 #APP_CFLAGS := -Wno-psabi
 
-NDK_TOOLCHAIN_VERSION=4.7
+NDK_TOOLCHAIN_VERSION=4.9
 APP_PLATFORM := android-9

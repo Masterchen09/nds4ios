@@ -265,5 +265,5 @@ void SNDOpenSLPaused(bool paused)
 {
 	if(bqPlayerPlay == NULL)
 		return;
-	(*bqPlayerPlay)->SetPlayState(bqPlayerPlay, paused ? SL_PLAYSTATE_PAUSED : SL_PLAYSTATE_PLAYING);
+	(*bqPlayerPlay)->SetPlayState(bqPlayerPlay, paused ? SL_PLAYSTATE_STOPPED : SL_PLAYSTATE_PLAYING);
 }
