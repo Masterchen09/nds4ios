@@ -26,6 +26,8 @@ typedef enum {
 	BUTTON_X = 9,
 	BUTTON_L = 10,
 	BUTTON_R = 11,
+	BUTTON_DEBUG = 12,
+	BUTTON_LID = 13,
 } BUTTON_ID;
 
 void EMU_init(int lang = -1);
@@ -55,6 +57,7 @@ void EMU_buttonDown(BUTTON_ID button);
 void EMU_buttonUp(BUTTON_ID button);
 void EMU_setDPad(bool up, bool down, bool left, bool right);
 void EMU_setABXY(bool a, bool b, bool x, bool y);
+void EMU_setMic(bool pressed);
 
 const char *EMU_version();
 

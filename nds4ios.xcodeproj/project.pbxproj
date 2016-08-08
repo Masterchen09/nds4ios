@@ -27,6 +27,13 @@
 		4CA7846A17B31BA500097BC4 /* Default-Landscape~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA7846917B31BA500097BC4 /* Default-Landscape~iPad.png */; };
 		4CA7846C17B31BB300097BC4 /* Default-Portrait@2x~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA7846B17B31BB300097BC4 /* Default-Portrait@2x~iPad.png */; };
 		4CA7846E17B31BB600097BC4 /* Default-Portrait~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA7846D17B31BB600097BC4 /* Default-Portrait~iPad.png */; };
+		5E860F6E1BFE7294001341F8 /* Lid.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E860F681BFE7294001341F8 /* Lid.png */; };
+		5E860F6F1BFE7294001341F8 /* Lid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E860F691BFE7294001341F8 /* Lid@2x.png */; };
+		5E860F701BFE7294001341F8 /* Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E860F6A1BFE7294001341F8 /* Menu.png */; };
+		5E860F711BFE7294001341F8 /* Menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E860F6B1BFE7294001341F8 /* Menu@2x.png */; };
+		5E860F721BFE7294001341F8 /* Mic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E860F6C1BFE7294001341F8 /* Mic.png */; };
+		5E860F731BFE7294001341F8 /* Mic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E860F6D1BFE7294001341F8 /* Mic@2x.png */; };
+		5E860F7D1BFEA4D6001341F8 /* mic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E860F7B1BFEA4D6001341F8 /* mic.cpp */; };
 		8B283050178DD27000E92785 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B28304E178DD27000E92785 /* 19-gear.png */; };
 		8B283051178DD27000E92785 /* 19-gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B28304F178DD27000E92785 /* 19-gear@2x.png */; };
 		8B283054178DD3CA00E92785 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B283052178DD3CA00E92785 /* 112-group.png */; };
@@ -244,6 +251,14 @@
 		4CA7846917B31BA500097BC4 /* Default-Landscape~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~iPad.png"; path = "Resources/required/Default-Landscape~iPad.png"; sourceTree = "<group>"; };
 		4CA7846B17B31BB300097BC4 /* Default-Portrait@2x~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~iPad.png"; path = "Resources/required/Default-Portrait@2x~iPad.png"; sourceTree = "<group>"; };
 		4CA7846D17B31BB600097BC4 /* Default-Portrait~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~iPad.png"; path = "Resources/required/Default-Portrait~iPad.png"; sourceTree = "<group>"; };
+		5E860F681BFE7294001341F8 /* Lid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Lid.png; path = Resources/Lid.png; sourceTree = "<group>"; };
+		5E860F691BFE7294001341F8 /* Lid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Lid@2x.png"; path = "Resources/Lid@2x.png"; sourceTree = "<group>"; };
+		5E860F6A1BFE7294001341F8 /* Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Menu.png; path = Resources/Menu.png; sourceTree = "<group>"; };
+		5E860F6B1BFE7294001341F8 /* Menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu@2x.png"; path = "Resources/Menu@2x.png"; sourceTree = "<group>"; };
+		5E860F6C1BFE7294001341F8 /* Mic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Mic.png; path = Resources/Mic.png; sourceTree = "<group>"; };
+		5E860F6D1BFE7294001341F8 /* Mic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Mic@2x.png"; path = "Resources/Mic@2x.png"; sourceTree = "<group>"; };
+		5E860F7B1BFEA4D6001341F8 /* mic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mic.cpp; path = "nds4droid-code/jni/desmume/src/mic.cpp"; sourceTree = SOURCE_ROOT; };
+		5E860F7C1BFEA4D6001341F8 /* mic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mic.h; path = "nds4droid-code/jni/desmume/src/mic.h"; sourceTree = SOURCE_ROOT; };
 		8B28304E178DD27000E92785 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "19-gear.png"; path = "Resources/19-gear.png"; sourceTree = "<group>"; };
 		8B28304F178DD27000E92785 /* 19-gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "19-gear@2x.png"; path = "Resources/19-gear@2x.png"; sourceTree = "<group>"; };
 		8B283052178DD3CA00E92785 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "112-group.png"; path = "Resources/112-group.png"; sourceTree = "<group>"; };
@@ -831,6 +846,12 @@
 		BF9D517017867F8200B5864B /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				5E860F681BFE7294001341F8 /* Lid.png */,
+				5E860F691BFE7294001341F8 /* Lid@2x.png */,
+				5E860F6A1BFE7294001341F8 /* Menu.png */,
+				5E860F6B1BFE7294001341F8 /* Menu@2x.png */,
+				5E860F6C1BFE7294001341F8 /* Mic.png */,
+				5E860F6D1BFE7294001341F8 /* Mic@2x.png */,
 				BF9D516017867F7D00B5864B /* ABXYPad.png */,
 				BF9D516117867F7D00B5864B /* ABXYPad@2x.png */,
 				BF9D516217867F7D00B5864B /* DPad.png */,
@@ -1036,6 +1057,8 @@
 				BFCFE15C17650FB0000A70CF /* matrix.cpp */,
 				BFCFE15D17650FB0000A70CF /* matrix.h */,
 				BFCFE15E17650FB0000A70CF /* mc.cpp */,
+				5E860F7B1BFEA4D6001341F8 /* mic.cpp */,
+				5E860F7C1BFEA4D6001341F8 /* mic.h */,
 				BFCFE15F17650FB0000A70CF /* MMU.cpp */,
 				BFCFE16017650FB0000A70CF /* MMU.h */,
 				BFCFE16117650FB0000A70CF /* movie.cpp */,
@@ -1308,11 +1331,11 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = NDS;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = InfiniDev;
 				TargetAttributes = {
 					BFCFE0EE1764FBD3000A70CF = {
-						DevelopmentTeam = 9UHQLN2HJH;
+						DevelopmentTeam = RL3PGE3X96;
 					};
 				};
 			};
@@ -1360,22 +1383,26 @@
 				28DA4A51178802FB002236A4 /* LTrigger@2x.png in Resources */,
 				8BEA093C178724E10060B347 /* Icon-Spotlight.png in Resources */,
 				28E7A6F61787D8D5003A9C5B /* HideEmulator@2x.png in Resources */,
+				5E860F721BFE7294001341F8 /* Mic.png in Resources */,
 				28DA4A53178802FB002236A4 /* RTrigger@2x.png in Resources */,
 				28DA4A50178802FB002236A4 /* LTrigger.png in Resources */,
 				BF9D516817867F7D00B5864B /* ABXYPad.png in Resources */,
 				8BEA093A178724E10060B347 /* Default@2x.png in Resources */,
 				8BEA093D178724E10060B347 /* Icon-Spotlight@2x.png in Resources */,
 				8BEA093B178724E10060B347 /* Icon-Multitasker@2x.png in Resources */,
+				5E860F6F1BFE7294001341F8 /* Lid@2x.png in Resources */,
 				BF9D516917867F7D00B5864B /* ABXYPad@2x.png in Resources */,
 				28E7A6F51787D8D5003A9C5B /* HideEmulator.png in Resources */,
 				BF9D516A17867F7D00B5864B /* DPad.png in Resources */,
 				28E7A6EE1787D110003A9C5B /* Defaults.plist in Resources */,
+				5E860F731BFE7294001341F8 /* Mic@2x.png in Resources */,
 				BF9D516B17867F7D00B5864B /* DPad@2x.png in Resources */,
 				8BEA0939178724E10060B347 /* Default.png in Resources */,
 				BF9D516C17867F7D00B5864B /* JoystickBackground.png in Resources */,
 				BF9D516D17867F7D00B5864B /* JoystickBackground@2x.png in Resources */,
 				BF9D516E17867F7D00B5864B /* JoystickButton.png in Resources */,
 				BF9D516F17867F7D00B5864B /* JoystickButton@2x.png in Resources */,
+				5E860F711BFE7294001341F8 /* Menu@2x.png in Resources */,
 				8BEA099017872FB50060B347 /* nds4ios-Info.plist in Resources */,
 				8BEFF477178B458100EEE55A /* disclosure.png in Resources */,
 				8BEFF47D178B459000EEE55A /* disclosure@2x.png in Resources */,
@@ -1400,6 +1427,8 @@
 				8B283061178DDBFB00E92785 /* 282-cards@2x.png in Resources */,
 				8B58A60C178E361A00BA0593 /* 240-ndscartridge.png in Resources */,
 				8B58A60D178E361A00BA0593 /* 240-ndscartridge@2x.png in Resources */,
+				5E860F701BFE7294001341F8 /* Menu.png in Resources */,
+				5E860F6E1BFE7294001341F8 /* Lid.png in Resources */,
 				D3B8BB961794ACEF0061D1D8 /* ZAActivityBar.bundle in Resources */,
 				D325821217A1D69B0009C84B /* pixelgrid.png in Resources */,
 				D325821317A1D69B0009C84B /* pixelgrid@2x.png in Resources */,
@@ -1438,6 +1467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E860F7D1BFEA4D6001341F8 /* mic.cpp in Sources */,
 				BFCFE1031764FBD3000A70CF /* AppDelegate.m in Sources */,
 				BFCFE18017650FB0000A70CF /* arm_instructions.cpp in Sources */,
 				BFCFE18117650FB0000A70CF /* ArmAnalyze.cpp in Sources */,
@@ -1609,12 +1639,16 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1624,6 +1658,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -1665,13 +1700,17 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -1730,8 +1769,9 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/nds4ios/support/NDS4iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = me.totlol.tmp.nds4ios;
+				PRODUCT_BUNDLE_IDENTIFIER = de.masterchen09.nds4ios;
 				PRODUCT_NAME = nds4ios;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1767,8 +1807,9 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/nds4ios/support/NDS4iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = me.totlol.tmp.nds4ios;
+				PRODUCT_BUNDLE_IDENTIFIER = de.masterchen09.nds4ios;
 				PRODUCT_NAME = nds4ios;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

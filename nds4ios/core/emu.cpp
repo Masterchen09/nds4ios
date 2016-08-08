@@ -67,12 +67,12 @@ struct MainLoopData
 VideoInfo video;
 
 
-void Mic_DeInit(){}
+/*void Mic_DeInit(){}
 BOOL Mic_Init(){return true;}
 void Mic_Reset(){}
 u8 Mic_ReadSample(){return 0x99;}
 void mic_savestate(EMUFILE* os){}
-bool mic_loadstate(EMUFILE* is, int size){ return true;}
+bool mic_loadstate(EMUFILE* is, int size){ return true;}*/
 
 bool useMmapForRomLoading = false;
 volatile bool execute = true;
@@ -85,7 +85,7 @@ bool frameAdvance = false;
 bool FrameLimit = true;
 int emu_paused = 0;
 volatile bool paused = false;
-bool enableMicrophone = false;
+bool enableMicrophone = true;
 volatile bool pausedByMinimize = false;
 volatile bool soundEnabled = true;
 
@@ -161,12 +161,12 @@ void EMU_init(int lang)
 	LOG("Init sound core\n");
 	SPU_ChangeSoundCore(SNDCORE_COREAUDIO, DESMUME_SAMPLE_RATE*8/60);
 	
-	static const char* nickname = "emozilla";
+	static const char* nickname = "Felix";
 	fw_config.nickname_len = strlen(nickname);
 	for(int i = 0 ; i < fw_config.nickname_len ; ++i)
 		fw_config.nickname[i] = nickname[i];
     
-	static const char* message = "nds4ios makes you happy!";
+	static const char* message = "";
 	fw_config.message_len = strlen(message);
 	for(int i = 0 ; i < fw_config.message_len ; ++i)
 		fw_config.message[i] = message[i];
@@ -199,7 +199,7 @@ void EMU_loadSettings()
 	CommonSettings.hud.ShowInputDisplay = false;
 	CommonSettings.hud.ShowGraphicalInputDisplay = false;
 	CommonSettings.hud.ShowLagFrameCounter = false;
-	CommonSettings.hud.ShowMicrophone = false;
+	CommonSettings.hud.ShowMicrophone = true;
 	CommonSettings.hud.ShowRTC = false;
 	CommonSettings.micMode = TCommonSettings::InternalNoise;
 	video.screengap = 0;
@@ -221,7 +221,7 @@ void EMU_loadSettings()
 	CommonSettings.GFX3D_LineHack = 0;
 	useMmapForRomLoading = true;
 	fw_config.language = 1;
-	enableMicrophone = false;
+	enableMicrophone = true;
 }
 
 void nds4droid_unpause()
@@ -521,24 +521,24 @@ void EMU_closeRom()
 	NDS_Reset();
 }
 
-static BOOL _b[] = {0,0,0,0,0,0,0,0,0,0,0,0,0};
-#define all_button _b[0], _b[1], _b[2], _b[3], _b[4], _b[5], _b[6], _b[7], _b[8], _b[9], _b[10], _b[11]
+static BOOL _b[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+#define all_button _b[0], _b[1], _b[2], _b[3], _b[4], _b[5], _b[6], _b[7], _b[8], _b[9], _b[10], _b[11], _b[12], _b[13]
 
-void EMU_setButtons(int l, int r, int up, int down, int left, int right, int a, int b, int x, int y, int start, int select)
+void EMU_setButtons(int l, int r, int up, int down, int left, int right, int a, int b, int x, int y, int start, int select, int debug, int lid)
 {
-	NDS_setPad(right, left, down, up, select, start, b, a, y, x, l, r, false, false);
+	NDS_setPad(right, left, down, up, select, start, b, a, y, x, l, r, debug, lid);
 }
 
 void EMU_buttonDown(BUTTON_ID button)
 {
     _b[button] = true;
-    NDS_setPad(all_button, false, false);
+    NDS_setPad(all_button);
 }
 
 void EMU_buttonUp(BUTTON_ID button)
 {
     _b[button] = false;
-    NDS_setPad(all_button, false, false);
+    NDS_setPad(all_button);
 }
 
 void EMU_setDPad(bool up, bool down, bool left, bool right)
@@ -547,7 +547,7 @@ void EMU_setDPad(bool up, bool down, bool left, bool right)
     _b[BUTTON_DOWN] = !!down;
     _b[BUTTON_LEFT] = !!left;
     _b[BUTTON_RIGHT] = !!right;
-    NDS_setPad(all_button, false, false);
+    NDS_setPad(all_button);
 }
 
 void EMU_setABXY(bool a, bool b, bool x, bool y)
@@ -556,7 +556,12 @@ void EMU_setABXY(bool a, bool b, bool x, bool y)
     _b[BUTTON_B] = !!b;
     _b[BUTTON_X] = !!x;
     _b[BUTTON_Y] = !!y;
-    NDS_setPad(all_button, false, false);
+    NDS_setPad(all_button);
+}
+
+void EMU_setMic(bool pressed)
+{
+	NDS_setMic(pressed);
 }
 
 const char* EMU_version()

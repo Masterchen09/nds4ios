@@ -123,8 +123,21 @@ u8 Mic_ReadSample(void)
 	if (CommonSettings.micMode != TCommonSettings::Physical && !Mic_GetActivate()) {
 		return MIC_NULL_SAMPLE_VALUE;
 	}
-
-	return Mic_DefaultBufferRead();
+    
+	// return Mic_DefaultBufferRead();
+    
+    const u8 noiseSample[NUM_INTERNAL_NOISE_SAMPLES] =
+    {
+        0xFC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xF5, 0xFF, 0xFF, 0xFF, 0xFF, 0x8E, 0xFF,
+        0xF4, 0xE1, 0xBF, 0x9A, 0x71, 0x58, 0x5B, 0x5F, 0x62, 0xC2, 0x25, 0x05, 0x01, 0x01, 0x01, 0x01
+    };
+    static unsigned int i = 0;
+    
+    if (++i >= NUM_INTERNAL_NOISE_SAMPLES) {
+        i = 0;
+    }
+    
+    return noiseSample[i];
 }
 
 static void Mic_DefaultBufferWrite(u8 theSample)
